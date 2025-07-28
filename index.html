@@ -94,42 +94,55 @@
   </footer>
 
   <script>
-    const outputElement = document.getElementById('output');
+  const outputElement = document.getElementById('output');
 
-    const comandos = {
-      sobre: `> sobre
+  const comandos = {
+    sobre: `> sobre
 Sou Nocturus, um desenvolvedor apaixonado por criar experiências únicas.
 Trabalho com jogos indie, pixel art, engines próprias e ideias que misturam tecnologia e magia.`,
-      
-      projetos: `> projetos
+    
+    projetos: `> projetos
 - Aventura Terminal
 - Clicker Cósmico
 - Simulador de Hacker
 - Plataforma de Minijogos`,
 
-      futuros: `> futuros
+    futuros: `> futuros
 - MMORPG estilo Matrix Retrô
 - Game Engine Open Source
 - IA amiga para jogos educativos`
-    };
+  };
 
-    function typeCommand(cmd) {
-      outputElement.innerHTML = ''; // limpa antes
+  let typingTimeout = null; // identificador do timeout
+  let cancelTyping = false; // flag para cancelar
+
+  function typeCommand(cmd) {
+    // Cancela qualquer digitação anterior
+    cancelTyping = true;
+    clearTimeout(typingTimeout);
+
+    // Espera um ciclo do event loop para reiniciar com segurança
+    setTimeout(() => {
+      cancelTyping = false;
+      outputElement.innerHTML = '';
       const text = comandos[cmd];
       let i = 0;
 
       function type() {
+        if (cancelTyping) return; // interrompe se flag estiver ativa
+
         if (i < text.length) {
           outputElement.innerHTML += text.charAt(i);
           i++;
-          setTimeout(type, 20); // velocidade da digitação
+          typingTimeout = setTimeout(type, 20);
         } else {
           outputElement.innerHTML += '<span class="blinking-cursor">_</span>';
         }
       }
 
       type();
-    }
-  </script>
+    }, 10);
+  }
+</script>
 </body>
 </html>
