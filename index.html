@@ -1,148 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Nocturus Terminal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nocturus</title>
   <style>
     body {
-      background-color: #0a0a0a;
-      color: #d8b4fe; /* Roxo claro */
-      font-family: 'Courier New', Courier, monospace;
-      padding: 40px;
+      margin: 0;
+      padding: 0;
+      background-color: #1c1130;
+      color: #b388eb;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    .terminal {
-      background-color: #000000;
-      border: 2px solid #d8b4fe;
-      border-radius: 10px;
-      padding: 20px;
-      width: 99%;
-      margin: auto;
-      box-shadow: 0 0 15px #d8b4fe;
-    }
-
-    .cmd {
-      color: #c084fc;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .output {
-      margin-top: 20px;
-      white-space: pre-line;
-      min-height: 100px;
+    .container {
+      width: 95%;
+      max-width: 1000px;
+      padding: 24px;
+      margin-top: 40px;
+      border: 2px solid #b388eb;
+      border-radius: 16px;
+      box-shadow: 0 0 12px 3px #b388eb;
+      background-color: #2a1a40;
     }
 
     h1 {
+      font-size: 3em;
+      margin: 0 0 10px 0;
       text-align: center;
-      font-size: 32px;
-      margin-bottom: 10px;
-      color: #d8b4fe;
     }
 
-    .description {
+    .descricao {
+      font-size: 1.2em;
+      margin-bottom: 20px;
       text-align: center;
-      font-size: 16px;
-      margin-bottom: 30px;
     }
 
-    .command-list {
+    .botoes {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 10px;
       margin-bottom: 20px;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 12px;
-      color: #666;
+    button {
+      background-color: transparent;
+      border: 2px solid #b388eb;
+      color: #b388eb;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 1em;
     }
 
-    .blinking-cursor {
-      display: inline-block;
-      width: 10px;
-      animation: blink 1s steps(1) infinite;
+    button:hover {
+      background-color: #b388eb22;
     }
 
-    @keyframes blink {
-      50% { opacity: 0; }
+    #output {
+      font-size: 1.1em;
+      white-space: pre-wrap;
+      margin-top: 20px;
+      min-height: 100px;
+      border-top: 1px dashed #b388eb66;
+      padding-top: 10px;
     }
   </style>
 </head>
 <body>
-
-  <div class="terminal">
+  <div class="container">
     <h1>Nocturus</h1>
-    <div class="description">
-      Criador de jogos, explorador de ideias, amante de pixels e códigos.  
-      Desenvolvendo mundos, um bit de cada vez.
+    <div class="descricao">Exploradora das sombras digitais, amante do oculto e criadora de mundos. Aqui começa sua jornada.</div>
+
+    <div class="botoes">
+      <button onclick="typeText('Sou desenvolvedora de jogos, entusiasta de ficção sombria e apaixonada por magia tecnológica.')">Sobre mim</button>
+      <button onclick="typeText('Habilidades: Programação, pixel art, escrita criativa e design interativo.')">Habilidades</button>
+      <button onclick="typeText('Projetos: Final Judgment, Nocturne Engine, Circuit Souls.')">Projetos</button>
     </div>
 
-    <div class="command-list">
-      <span class="cmd" onclick="typeCommand('sobre')">&gt; sobre</span>
-      <span class="cmd" onclick="typeCommand('projetos')">&gt; projetos</span>
-      <span class="cmd" onclick="typeCommand('futuros')">&gt; futuros</span>
-    </div>
-
-    <div id="output" class="output"></div>
+    <div id="output"></div>
   </div>
 
-  <footer>
-    Site feito por Nocturus © 2025
-  </footer>
-
   <script>
-  const outputElement = document.getElementById('output');
+    let typingInterval;
 
-  const comandos = {
-    sobre: `> sobre
-Sou Nocturus, um desenvolvedor apaixonado por criar experiências únicas.
-Trabalho com jogos indie, pixel art, engines próprias e ideias que misturam tecnologia e magia.`,
-    
-    projetos: `> projetos
-- Aventura Terminal
-- Clicker Cósmico
-- Simulador de Hacker
-- Plataforma de Minijogos`,
+    function typeText(text) {
+      const output = document.getElementById("output");
+      clearInterval(typingInterval); // Mata digitação anterior
+      output.textContent = ""; // Limpa conteúdo anterior
 
-    futuros: `> futuros
-- MMORPG estilo Matrix Retrô
-- Game Engine Open Source
-- IA amiga para jogos educativos`
-  };
+      let index = 0;
 
-  let typingTimeout = null; // identificador do timeout
-  let cancelTyping = false; // flag para cancelar
-
-  function typeCommand(cmd) {
-    // Cancela qualquer digitação anterior
-    cancelTyping = true;
-    clearTimeout(typingTimeout);
-
-    // Espera um ciclo do event loop para reiniciar com segurança
-    setTimeout(() => {
-      cancelTyping = false;
-      outputElement.innerHTML = '';
-      const text = comandos[cmd];
-      let i = 0;
-
-      function type() {
-        if (cancelTyping) return; // interrompe se flag estiver ativa
-
-        if (i < text.length) {
-          outputElement.innerHTML += text.charAt(i);
-          i++;
-          typingTimeout = setTimeout(type, 20);
+      typingInterval = setInterval(() => {
+        if (index < text.length) {
+          output.textContent += text[index];
+          index++;
         } else {
-          outputElement.innerHTML += '<span class="blinking-cursor">_</span>';
+          clearInterval(typingInterval); // Finaliza após terminar
         }
-      }
-
-      type();
-    }, 10);
-  }
-</script>
+      }, 40); // Velocidade de digitação
+    }
+  </script>
 </body>
 </html>
