@@ -147,29 +147,41 @@ function processarComando() {
       conteudo.innerText = `> ajuda\nComandos disponíveis:\n- ajuda [comando] → explica um comando específico\n- sobre\n- futuros\n- projetos\n- projetos [id] [comando]\n- limpar\n_`;
       break;
     case "sobre":
-      conteudo.innerText = `> sobre\nIdade: 17\nNome: Daniel\nCodNome: Nocturus\nCurriculo Linkedin: [Work Progressem]\nCurriculo Lattes: [Work Progressem]\nFundador do Grupo Nexus\nSou Nocturus, um desenvolvedor apaixonado por criar experiências únicas.\n
-Abilidades:\n
-    Porgramação:\n
-        C++        - Introdutorio\n
-        C          - Basico\n
-        C#         - Introdutorio\n
-        Java       - Basico\n
-        JavaScript - Introdutorio\n
-        HTML       - Introdutorio\n
-        Julia      - Basico\n
-        Egua       - Introdutorio\n
-        Lua        - Introdutorio\n
-        Python     - Basico\n
-        GDScript   - Basico/Avançado\n
-        Ruby       - na lista de aprendizagem\n
-        Pacal      - na lista de aprendizagem\n\n
-    Design:\n
-        Grafico - Basico\n
-        2d      - basico\n
-        3d      - na lista de aprendizagem\n\n
-    Outros:\n
-        Efeitos sonoros - Treinando\n
-        Composições     - Treinando\n_`;
+      conteudo.innerText = `> sobre
+Idade: 17
+Nome: Daniel
+CodNome: Nocturus
+Curriculo Linkedin: [Work Progressem]
+Curriculo Lattes: [Work Progressem]
+Fundador do Grupo Nexus
+Sou Nocturus, um desenvolvedor apaixonado por criar experiências únicas.
+
+Abilidades:
+
+    Porgramação:
+        C++        - Introdutorio
+        C          - Basico
+        C#         - Introdutorio
+        Java       - Basico
+        JavaScript - Introdutorio
+        HTML       - Introdutorio
+        Julia      - Basico
+        Egua       - Introdutorio
+        Lua        - Introdutorio
+        Python     - Basico
+        GDScript   - Basico/Avançado
+        Ruby       - na lista de aprendizagem
+        Pacal      - na lista de aprendizagem
+
+    Design:
+        Grafico - Basico
+        2d      - basico
+        3d      - na lista de aprendizagem
+
+    Outros:
+        Efeitos sonoros - Treinando
+        Composições     - Treinando
+_`;
       break;
     case "futuros":
       conteudo.innerText = `> futuros\nAguardando as linhas do destino serem traçadas..._`;
