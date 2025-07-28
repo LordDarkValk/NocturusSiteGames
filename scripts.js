@@ -148,7 +148,7 @@ function processarComando() {
   // Trata comandos normais
   switch (comando) {
     case "ajuda":
-      conteudo.innerText = `> ajuda\nComandos disponíveis:\n- ajuda [comando] → explica um comando específico\n- sobre\n- futuros\n- projetos\n- projetos [nome]\n- limpar\n_`;
+      conteudo.innerText = `> ajuda\nComandos disponíveis:\n- ajuda [comando] → explica um comando específico\n- sobre\n- futuros\n- projetos\n- limpar\n_`;
       break;
     case "sobre":
       conteudo.innerText = `> sobre\nSou Nocturus, um desenvolvedor apaixonado por criar experiências únicas._`;
