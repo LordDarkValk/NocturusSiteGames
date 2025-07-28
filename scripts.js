@@ -151,7 +151,26 @@ function processarComando() {
       conteudo.innerText = `> ajuda\nComandos disponíveis:\n- ajuda [comando] → explica um comando específico\n- sobre\n- futuros\n- projetos\n- projetos [id] [comando]\n- limpar\n_`;
       break;
     case "sobre":
-      conteudo.innerText = `> sobre\nSou Nocturus, um desenvolvedor apaixonado por criar experiências únicas._`;
+      conteudo.innerText = `> sobre\nSou Nocturus, um desenvolvedor apaixonado por criar experiências únicas.\nIdade: 17\nNome: Daniel\nCodNome: Nocturus\nCurriculo Linkedin: [Work Progressen]\nFundador do Grupo Nexus\n
+Abilidades:\n
+    Porgramação:\n
+        C++        - Introdutorio\n
+        C          - Basico\n
+        C#         - Introdutorio\n
+        Java       - Basico\n
+        JavaScript - Introdutorio\n
+        HTML       - Introdutorio\n
+        Julia      - Basico\n
+        Egua       - Introdutorio\n
+        Lua        - Introdutorio\n
+        Python     - Basico\n
+        GDScript   - Basico/Avançado\n
+        Ruby       - na lista de aprendizagem\n
+        Pacal      - na lista de aprendizagem\n\n
+    Design:\n
+        Grafico - Basico\n
+        2d      - basico\n
+        3d      - na lista de aprendizagem\n_`;
       break;
     case "futuros":
       conteudo.innerText = `> futuros\nAguardando as linhas do destino serem traçadas..._`;
