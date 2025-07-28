@@ -10,6 +10,14 @@ body {
   height: 100vh;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  font-family: 'Courier New', Courier, monospace;
+  color: #c9b6fc;
+}
+
 .terminal {
   background-color: #000;
   border: 2px solid #c9b6fc;
@@ -17,8 +25,10 @@ body {
   box-shadow: 0 0 10px #c9b6fc;
   padding: 20px;
   max-width: 900px;
-  width: 100%;
-  margin: 20px;
+  width: 90%;
+  margin: 40px auto; /* Centraliza horizontalmente e dá respiro vertical */
+  overflow-y: auto;
+  max-height: 90vh; /* Garante que não ultrapasse a tela, mas permita rolagem */
 }
 
 h1 {
@@ -31,6 +41,14 @@ h1 {
   margin: 20px 0;
 }
 
+.conteudo {
+  white-space: pre-wrap;
+  overflow-y: auto;
+  max-height: 60vh;
+  padding: 10px 0;
+}
+
+
 .center span {
   cursor: pointer;
   margin: 0 10px;
@@ -42,13 +60,6 @@ h1 {
 .center span:hover {
   background-color: #c9b6fc;
   color: black;
-}
-
-.conteudo {
-  height: 100%;
-  overflow-y: auto;
-  padding: 10px;
-  box-sizing: border-box;
 }
 
 
@@ -98,4 +109,27 @@ h1 {
   font-family: inherit;
   font-size: 1em;
   outline: none;
+}
+
+/* Estiliza a barra de rolagem */
+.terminal::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Cor do fundo da barra */
+.terminal::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+/* Cor do "puxador" da barra */
+.terminal::-webkit-scrollbar-thumb {
+  background-color: #c9b6fc;
+  border-radius: 10px;
+  border: 2px solid #1a1a1a; /* cria um efeito de "moldura" */
+}
+
+/* Opcional: ao passar o mouse */
+.terminal::-webkit-scrollbar-thumb:hover {
+  background-color: #d9caff;
 }
