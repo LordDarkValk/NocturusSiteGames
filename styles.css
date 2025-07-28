@@ -139,3 +139,7 @@ h1 {
   scrollbar-width: thin;
   scrollbar-color: #c9b6fc #1a1a1a;
 }
+
+#conteudo {
+  white-space: pre;
+}
