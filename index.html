@@ -1,134 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Nocturus Terminal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nocturus</title>
   <style>
     body {
       background-color: #0a0a0a;
-      color: #d8b4fe; /* Roxo claro */
+      color: #C792EA;
       font-family: 'Courier New', Courier, monospace;
       padding: 40px;
-    }
-
-    .terminal {
-      background-color: #000000;
-      border: 2px solid #d8b4fe;
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-      box-shadow: 0 0 15px #d8b4fe;
-    }
-
-    .cmd {
-      color: #c084fc;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .output {
-      margin-top: 20px;
-      white-space: pre-line;
-      min-height: 100px;
+      margin: 0;
     }
 
     h1 {
-      text-align: center;
-      font-size: 32px;
+      font-size: 2.5em;
       margin-bottom: 10px;
-      color: #d8b4fe;
     }
 
-    .description {
-      text-align: center;
-      font-size: 16px;
-      margin-bottom: 30px;
+    p {
+      font-size: 1.2em;
+      max-width: 600px;
     }
 
-    .command-list {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 20px;
+    .button-bar {
+      margin-top: 30px;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 12px;
-      color: #666;
+    button {
+      background-color: transparent;
+      border: 2px solid #C792EA;
+      color: #C792EA;
+      font-family: inherit;
+      font-size: 1em;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
     }
 
-    .blinking-cursor {
-      display: inline-block;
-      width: 10px;
-      animation: blink 1s steps(1) infinite;
+    button:hover {
+      background-color: #C792EA20;
     }
 
-    @keyframes blink {
-      50% { opacity: 0; }
+    .terminal {
+      margin-top: 30px;
+      background-color: #111;
+      padding: 20px;
+      border: 1px solid #333;
+      min-height: 100px;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
 
-  <div class="terminal">
-    <h1>Nocturus</h1>
-    <div class="description">
-      Criador de jogos, explorador de ideias, amante de pixels e códigos.  
-      Desenvolvendo mundos, um bit de cada vez.
-    </div>
+  <h1>Nocturus</h1>
+  <p>Desenvolvedor independente apaixonado por criar experiências únicas com jogos e sistemas. Explorando mundos, ideias e linguagens.</p>
 
-    <div class="command-list">
-      <span class="cmd" onclick="typeCommand('sobre')">&gt; sobre</span>
-      <span class="cmd" onclick="typeCommand('projetos')">&gt; projetos</span>
-      <span class="cmd" onclick="typeCommand('futuros')">&gt; futuros</span>
-    </div>
-
-    <div id="output" class="output"></div>
+  <div class="button-bar">
+    <button onclick="startTyping('projetos')">Projetos</button>
+    <button onclick="startTyping('emProgresso')">Projetos em progresso</button>
+    <button onclick="startTyping('futuros')">Futuros projetos</button>
   </div>
 
-  <footer>
-    Site feito por Nocturus © 2025
-  </footer>
+  <div class="terminal" id="terminal"></div>
 
   <script>
-    const outputElement = document.getElementById('output');
+    const terminal = document.getElementById('terminal');
+    let typingInterval = null;
 
-    const comandos = {
-      sobre: `> sobre
-Sou Nocturus, um desenvolvedor apaixonado por criar experiências únicas.
-Trabalho com jogos indie, pixel art, engines próprias e ideias que misturam tecnologia e magia.`,
-      
-      projetos: `> projetos
-- Aventura Terminal
-- Clicker Cósmico
-- Simulador de Hacker
-- Plataforma de Minijogos`,
-
-      futuros: `> futuros
-- MMORPG estilo Matrix Retrô
-- Game Engine Open Source
-- IA amiga para jogos educativos`
+    const textos = {
+      projetos: "• Nocturus - Projeto principal\n• DarkRift - Plataforma retrô\n• Souls Unlight - Game narrativo",
+      emProgresso: "• Fragmentos de Gelo - Em desenvolvimento (fase de arte)\n• NoctBot - IA para jogos estilo roguelike",
+      futuros: "• EchoDreams - Jogo musical com quebra-cabeças\n• EternalCore - Jogo de estratégia sci-fi\n• Collapser - Mundo pós-apocalíptico pixelado"
     };
 
-    function typeCommand(cmd) {
-      outputElement.innerHTML = ''; // limpa antes
-      const text = comandos[cmd];
+    function startTyping(tipo) {
+      if (typingInterval) clearInterval(typingInterval);
+      terminal.textContent = '';
+
+      const texto = textos[tipo];
       let i = 0;
 
-      function type() {
-        if (i < text.length) {
-          outputElement.innerHTML += text.charAt(i);
-          i++;
-          setTimeout(type, 20); // velocidade da digitação
-        } else {
-          outputElement.innerHTML += '<span class="blinking-cursor">_</span>';
-        }
-      }
-
-      type();
+      typingInterval = setInterval(() => {
+        terminal.textContent += texto[i];
+        i++;
+        if (i >= texto.length) clearInterval(typingInterval);
+      }, 25); // velocidade da digitação
     }
   </script>
 </body>
