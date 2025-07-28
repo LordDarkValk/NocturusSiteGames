@@ -11,11 +11,7 @@ function mostrarConteudo(secao) {
   projetoAtual = '';
   infoAtual = '';
   
-  if (secao === "sobre") {
-    conteudo.innerText = "> sobre\nSou Nocturus, um desenvolvedor apaixonado por criar experiências únicas._";
-  } else if (secao === "futuros") {
-    conteudo.innerText = "> futuros\nAguardando as linhas do destino serem traçadas..._";
-  }
+  
 }
 
 function toggleProjetos() {
