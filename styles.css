@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  font-family: 'Courier New', Courier, monospace;
+  color: #c9b6fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.terminal {
+  background-color: #000;
+  border: 2px solid #c9b6fc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #c9b6fc;
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #c9b6fc;
+}
+
+.center {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.center span {
+  cursor: pointer;
+  margin: 0 10px;
+  padding: 5px 10px;
+  border: 1px solid #c9b6fc;
+  border-radius: 5px;
+}
+
+.center span:hover {
+  background-color: #c9b6fc;
+  color: black;
+}
+
+#conteudo {
+  white-space: pre-wrap;
+  margin-top: 20px;
+}
+
+.submenu, .subsubmenu {
+  display: none;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.submenu button, .subsubmenu button {
+  background: none;
+  border: 1px solid #c9b6fc;
+  color: #c9b6fc;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.submenu button:hover, .subsubmenu button:hover {
+  background-color: #c9b6fc;
+  color: black;
+}
+
+.ativo {
+  background-color: #c9b6fc;
+  color: black;
+}
+
+.entrada {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.entrada span {
+  color: #c9b6fc;
+  margin-right: 10px;
+}
+
+.entrada input {
+  flex: 1;
+  background-color: black;
+  border: none;
+  border-bottom: 1px solid #c9b6fc;
+  color: #c9b6fc;
+  font-family: inherit;
+  font-size: 1em;
+  outline: none;
+}

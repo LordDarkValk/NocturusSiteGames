@@ -1,144 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Nocturus Terminal</title>
-  <style>
-    body {
-      background-color: #0a0a0a;
-      color: #d8b4fe; /* Roxo claro */
-      font-family: 'Courier New', Courier, monospace;
-      padding: 40px;
-    }
-
-    .terminal {
-      background-color: #000000;
-      border: 2px solid #d8b4fe;
-      border-radius: 10px;
-      padding: 20px;
-      width: 99%;
-      margin: auto;
-      box-shadow: 0 0 15px #d8b4fe;
-    }
-
-    .cmd {
-      color: #c084fc;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .output {
-      margin-top: 20px;
-      white-space: pre-line;
-      min-height: 100px;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 32px;
-      margin-bottom: 10px;
-      color: #d8b4fe;
-    }
-
-    .description {
-      text-align: center;
-      font-size: 16px;
-      margin-bottom: 30px;
-    }
-
-    .command-list {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 12px;
-      color: #666;
-    }
-
-    .blinking-cursor {
-      display: inline-block;
-      width: 10px;
-      animation: blink 1s steps(1) infinite;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nocturus - Criador de Jogos</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
   <div class="terminal">
-    <h1>Nocturus</h1>
-    <div class="description">
-      Criando mundos digitais, explorando ideias, amando cada pixels, códigos e bits. E sempre estudando, para nunca desistir dos meus sonhos! 
-      Fazendo isso em um bit de cada vez.
-    </div>
+  <h1>Nocturus</h1>
+  <p class="center">
+  Criando mundos digitais, explorando ideias, amando cada pixel, código e bit.<br>
+  E sempre estudando, para nunca desistir dos meus sonhos!<br>
+  Fazendo isso em um bit de cada vez.
+</p>
 
-    <div class="command-list">
-      <span class="cmd" onclick="typeCommand('sobre')">&gt; sobre</span>
-      <span class="cmd" onclick="typeCommand('projetos')">&gt; projetos  {Worken Progresse}</span>
-      <span class="cmd" onclick="typeCommand('futuros')">&gt; futuros  {Worken Progresse}</span>
-    </div>
+  <div id="conteudo">Digite "ajuda" para ver os comandos disponíveis.</div>
 
-    <div id="output" class="output"></div>
+  <div class="entrada">
+    <span>&gt;</span>
+    <input type="text" id="comandoInput" onkeydown="if(event.key === 'Enter') processarComando()" autocomplete="off" autofocus />
   </div>
+</div>
 
-  <footer>
-    Site feito por Nocturus © 2025
-  </footer>
 
-  <script>
-  const outputElement = document.getElementById('output');
-
-  const comandos = {
-    sobre: `> sobre
-Sou Nocturus, um desenvolvedor apaixonado por criar experiências únicas ou quase unicas.
-Trabalho com jogos indie, pixel art, engines próprias e ideias que misturam tecnologia e magia e muito mais, 
-sempre querendo trazerendo o meu melhor para as pessoas.`,
-    
-    projetos: `> projetos
-- Worken Progresse`,
-
-    futuros: `> futuros
-- Worken Progresse`
-  };
-
-  let typingTimeout = null; // identificador do timeout
-  let cancelTyping = false; // flag para cancelar
-
-  function typeCommand(cmd) {
-    // Cancela qualquer digitação anterior
-    cancelTyping = true;
-    clearTimeout(typingTimeout);
-
-    // Espera um ciclo do event loop para reiniciar com segurança
-    setTimeout(() => {
-      cancelTyping = false;
-      outputElement.innerHTML = '';
-      const text = comandos[cmd];
-      let i = 0;
-
-      function type() {
-        if (cancelTyping) return; // interrompe se flag estiver ativa
-
-        if (i < text.length) {
-          outputElement.innerHTML += text.charAt(i);
-          i++;
-          typingTimeout = setTimeout(type, 20);
-        } else {
-          outputElement.innerHTML += '<span class="blinking-cursor">_</span>';
-        }
-      }
-
-      type();
-    }, 10);
-  }
-</script>
+  <script src="scripts.js"></script>
 </body>
 </html>
